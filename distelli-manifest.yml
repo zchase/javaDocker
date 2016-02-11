@@ -1,4 +1,4 @@
-zchase/example-tomcat-war:
+zchase/javaDocker:
 
   Env:
     # Set the below enviornment variables for your environment
