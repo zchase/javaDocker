@@ -42,8 +42,16 @@ zchase/javaDocker:
     - sudo apt-get -y install oracle-java7-installer
     - sudo apt-get -y install oracle-java7-set-default
     - sudo apt-get -y install tomcat7
+    - cd /usr/local
+    - sudo curl -O http://mirror.olnevhost.net/pub/apache/maven/binaries/apache-maven-3.2.1-bin.tar.gz
+    - sudo tar zxvf apache-maven-3.2.1-bin.tar.gz 
+    - mvn -version
 
   PostInstall:
+    - mvn package
+    - publicip=$(curl -s ident.me)
+    - echo "Public IP $publicip"
+    - 'sudo cp -f ./target/*.war $CATALINA_HOME/webapps/'
     # By default tomcat detects if the war file has changed and
     # automatically extracts it. If restart is required you can
     # restart tomcat with the command below.
